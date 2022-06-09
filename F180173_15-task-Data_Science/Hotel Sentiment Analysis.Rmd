@@ -1,0 +1,50 @@
+---
+title: "Hotel Sentiment Analysis"
+author: "18F-0250"
+date: "13/18/2021"
+output: Word
+---
+
+```{r}
+
+hotel_df <- read.csv("C:/Users/Shabrez/Downloads/hotel_reviews.csv")
+hotel_df <- hotel_df[1:5,]
+hotel_df
+
+
+
+
+custom_colors <- c("red", "royalblue4","powderblue","orangered","springgreen")
+pie(hotel_df$Rating, labels = rownames(hotel_df), col=custom_colors, main = "Hotel Reviews Ratings")
+
+
+
+
+library("plotrix")
+draw.circle(0, 0, 0.4, col="white")
+
+library(pacman)
+p_load(sentimentr, dplyr, magrittr)
+sentiment(hotel_df$ï..Review)
+temp = hotel_df
+i=1
+for(review in temp$ï..Review)
+{
+   temp$Sentiment[i] <- sentiment(review)$sentiment
+   if(temp$Sentiment[i] > 0)
+   {
+       temp$category[i] = "+tive"
+   }
+   else if(temp$Sentiment[i] < 0)
+   {
+       temp$category[i] = "-tive"
+   }
+   else if(temp$Sentiment[i] == 0)
+   {
+       temp$category[i] = "Neutral"
+   }
+   i<-i+1
+}
+temp
+
+```

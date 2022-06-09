@@ -1,0 +1,37 @@
+---
+title: "financial"
+author: "18F0250"
+date: "12/16/2021"
+output: word_document
+---
+
+```{r setup}
+financial=read.csv('C:/Users/Shabrez/Desktop/financial.csv')
+financial
+```
+
+
+
+```{r cars}
+
+drop_na=na.omit(financial)
+drop_na=head(drop_na)
+```
+
+
+
+```{r}
+#barplot(drop_na$`Fund.allotted.in.â.¹crores.`,names.arg=drop_na$Department..Ministry)
+drop_na$`Fund.allotted.in.â.¹crores.`/sum(drop_na$`Fund.allotted.in.â.¹crores.`)*100
+
+```
+
+
+```{r}
+
+
+pie(drop_na$`Fund.allotted.in.â.¹crores.`/sum(drop_na$`Fund.allotted.in.â.¹crores.`)*100, labels = paste0(drop_na$`Fund.allotted.in.â.¹crores.`/sum(drop_na$`Fund.allotted.in.â.¹crores.`)*100, "%"))
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
